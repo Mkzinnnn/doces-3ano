@@ -13,18 +13,16 @@ body {
     overflow-x: hidden;
 }
 
+/* HEADER */
 header {
     background: linear-gradient(90deg, #ff69b4, #ff1493);
     color: white;
     padding: 25px;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-.container {
-    padding: 30px;
-    text-align: center;
-}
+/* CARD */
+.container { padding: 30px; text-align: center; }
 
 .card {
     background: white;
@@ -35,42 +33,33 @@ header {
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
+/* TABLE */
+table { width: 100%; border-collapse: collapse; }
+th { background: #ff69b4; color: white; padding: 12px; }
+td { padding: 12px; border-bottom: 1px solid #eee; }
 
-th {
-    background: #ff69b4;
-    color: white;
-    padding: 12px;
-}
-
-td {
-    padding: 12px;
-    border-bottom: 1px solid #eee;
+.controle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 button {
-    padding: 6px 12px;
-    margin: 0 3px;
+    padding: 6px 14px;
     background: #ff69b4;
     border: none;
     border-radius: 8px;
     color: white;
     cursor: pointer;
     font-weight: bold;
+    font-size: 16px;
+    transition: 0.2s;
 }
 
-button:hover {
-    background: #ff1493;
-}
+button:hover { background: #ff1493; transform: scale(1.1); }
 
-.total {
-    margin-top: 20px;
-    font-size: 22px;
-    font-weight: bold;
-}
+.total { margin-top: 20px; font-size: 22px; font-weight: bold; }
 
 .pix {
     margin-top: 30px;
@@ -79,11 +68,45 @@ button:hover {
     border-radius: 15px;
 }
 
-footer {
-    margin-top: 40px;
-    background: #ff69b4;
+/* WhatsApp */
+.whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366;
     color: white;
     padding: 15px;
+    border-radius: 50%;
+    font-size: 24px;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Carrinho */
+.carrinho {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    font-size: 14px;
+    width: 200px;
+}
+
+/* Confete */
+.confete {
+    position: fixed;
+    top: -10px;
+    width: 10px;
+    height: 10px;
+    background: red;
+    animation: cair 3s linear forwards;
+}
+
+@keyframes cair {
+    to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
 }
 
 /* Doces caindo */
@@ -94,11 +117,14 @@ footer {
     animation: fall linear infinite;
     opacity: 0.7;
 }
+@keyframes fall { to { transform: translateY(110vh); } }
 
-@keyframes fall {
-    to {
-        transform: translateY(110vh);
-    }
+footer {
+    margin-top: 40px;
+    background: #ff69b4;
+    color: white;
+    padding: 15px;
+    text-align: center;
 }
 </style>
 </head>
@@ -110,73 +136,68 @@ footer {
 <p><strong>Turma: Terceiro Ano, Informática</strong></p>
 </header>
 
+<div class="carrinho">
+<strong>🛒 Carrinho</strong>
+<div id="lista"></div>
+<hr>
+Total: R$ <span id="total">0.00</span><br><br>
+<button onclick="finalizar()">Finalizar 🎉</button>
+</div>
+
 <div class="container">
 <div class="card">
 
 <h2>🍭 Tabela de Preços</h2>
 
 <table>
+<tr><th>Doce</th><th>Preço</th><th>Qtd</th></tr>
+
 <tr>
-<th>Doce</th>
-<th>Preço</th>
-<th>Quantidade</th>
+<td>Paçoca</td><td>R$ 0,50</td>
+<td><div class="controle">
+<button onclick="alterar('Paçoca',0.5,-1)">-</button>
+<span id="Paçoca">0</span>
+<button onclick="alterar('Paçoca',0.5,1)">+</button>
+</div></td>
 </tr>
 
 <tr>
-<td>Paçoca</td>
-<td>R$ 0,50</td>
-<td>
-<button onclick="alterar('pacoca', -1)">-</button>
-<span id="pacoca">0</span>
-<button onclick="alterar('pacoca', 1)">+</button>
-</td>
+<td>Pirulito</td><td>R$ 1,00</td>
+<td><div class="controle">
+<button onclick="alterar('Pirulito',1,-1)">-</button>
+<span id="Pirulito">0</span>
+<button onclick="alterar('Pirulito',1,1)">+</button>
+</div></td>
 </tr>
 
 <tr>
-<td>Pirulito</td>
-<td>R$ 1,00</td>
-<td>
-<button onclick="alterar('pirulito', -1)">-</button>
-<span id="pirulito">0</span>
-<button onclick="alterar('pirulito', 1)">+</button>
-</td>
+<td>Chiclete</td><td>R$ 0,50</td>
+<td><div class="controle">
+<button onclick="alterar('Chiclete',0.5,-1)">-</button>
+<span id="Chiclete">0</span>
+<button onclick="alterar('Chiclete',0.5,1)">+</button>
+</div></td>
 </tr>
 
 <tr>
-<td>Chiclete</td>
-<td>R$ 0,50</td>
-<td>
-<button onclick="alterar('chiclete', -1)">-</button>
-<span id="chiclete">0</span>
-<button onclick="alterar('chiclete', 1)">+</button>
-</td>
+<td>Mini Donuts</td><td>R$ 2,00 (3 por R$5)</td>
+<td><div class="controle">
+<button onclick="alterar('Donuts',2,-1)">-</button>
+<span id="Donuts">0</span>
+<button onclick="alterar('Donuts',2,1)">+</button>
+</div></td>
 </tr>
 
 <tr>
-<td>Mini Donuts</td>
-<td>R$ 2,00 (3 por R$5)</td>
-<td>
-<button onclick="alterar('donut', -1)">-</button>
-<span id="donut">0</span>
-<button onclick="alterar('donut', 1)">+</button>
-</td>
-</tr>
-
-<tr>
-<td>Brigadeiro</td>
-<td>R$ 2,00</td>
-<td>
-<button onclick="alterar('brigadeiro', -1)">-</button>
-<span id="brigadeiro">0</span>
-<button onclick="alterar('brigadeiro', 1)">+</button>
-</td>
+<td>Brigadeiro</td><td>R$ 2,00</td>
+<td><div class="controle">
+<button onclick="alterar('Brigadeiro',2,-1)">-</button>
+<span id="Brigadeiro">0</span>
+<button onclick="alterar('Brigadeiro',2,1)">+</button>
+</div></td>
 </tr>
 
 </table>
-
-<div class="total">
-Total: R$ <span id="total">0.00</span>
-</div>
 
 <div class="pix">
 <h3>💰 Pagamento via Pix</h3>
@@ -188,60 +209,69 @@ Total: R$ <span id="total">0.00</span>
 </div>
 </div>
 
+<a class="whatsapp" href="https://wa.me/5538988339830" target="_blank">📱</a>
+
 <footer>
 ✨ Ajude o Terceiro Ano, Informática a realizar a formatura dos sonhos! ✨
 </footer>
 
 <script>
-let precos = {
-    pacoca: 0.5,
-    pirulito: 1,
-    chiclete: 0.5,
-    donut: 2,
-    brigadeiro: 2
-};
+let carrinho = {};
 
-let quantidades = {
-    pacoca: 0,
-    pirulito: 0,
-    chiclete: 0,
-    donut: 0,
-    brigadeiro: 0
-};
+let somMais = new Audio("https://www.soundjay.com/buttons/sounds/button-3.mp3");
+let somMenos = new Audio("https://www.soundjay.com/buttons/sounds/button-10.mp3");
+let somFinal = new Audio("https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3");
 
-function alterar(item, valor) {
-    if (quantidades[item] + valor >= 0) {
-        quantidades[item] += valor;
-        document.getElementById(item).innerText = quantidades[item];
-        atualizarTotal();
+function alterar(item, preco, valor) {
+    if (!carrinho[item]) carrinho[item] = {qtd:0, preco:preco};
+    if (carrinho[item].qtd + valor >= 0) {
+        carrinho[item].qtd += valor;
+        document.getElementById(item).innerText = carrinho[item].qtd;
+        valor > 0 ? somMais.play() : somMenos.play();
+        atualizar();
     }
 }
 
-function atualizarTotal() {
+function atualizar() {
     let total = 0;
-
-    for (let item in quantidades) {
-        if (item === "donut") {
-            let qtd = quantidades[item];
-            total += Math.floor(qtd / 3) * 5 + (qtd % 3) * 2;
-        } else {
-            total += quantidades[item] * precos[item];
+    let lista = "";
+    for (let item in carrinho) {
+        let qtd = carrinho[item].qtd;
+        if (qtd > 0) {
+            if (item === "Donuts") {
+                total += Math.floor(qtd/3)*5 + (qtd%3)*2;
+            } else {
+                total += qtd * carrinho[item].preco;
+            }
+            lista += item + " x" + qtd + "<br>";
         }
     }
-
+    document.getElementById("lista").innerHTML = lista;
     document.getElementById("total").innerText = total.toFixed(2);
 }
 
+function finalizar() {
+    somFinal.play();
+    for(let i=0;i<80;i++){
+        let c = document.createElement("div");
+        c.classList.add("confete");
+        c.style.left = Math.random()*100+"vw";
+        c.style.background = ["red","blue","yellow","green","pink"][Math.floor(Math.random()*5)];
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(),3000);
+    }
+    alert("Compra finalizada! Obrigado por apoiar 🎓🍬");
+}
+
 /* Doces caindo */
-const doces = ["🍬","🍭","🍩","🧁"];
-for(let i = 0; i < 25; i++){
-    let doce = document.createElement("div");
-    doce.classList.add("candy");
-    doce.innerHTML = doces[Math.floor(Math.random()*doces.length)];
-    doce.style.left = Math.random()*100 + "vw";
-    doce.style.animationDuration = (6 + Math.random()*6) + "s";
-    doce.style.fontSize = (20 + Math.random()*25) + "px";
-    document.body.appendChild(doce);
+const doces=["🍬","🍭","🍩","🧁"];
+for(let i=0;i<25;i++){
+ let d=document.createElement("div");
+ d.classList.add("candy");
+ d.innerHTML=doces[Math.floor(Math.random()*doces.length)];
+ d.style.left=Math.random()*100+"vw";
+ d.style.animationDuration=(6+Math.random()*6)+"s";
+ document.body.appendChild(d);
 }
 </script>
 
