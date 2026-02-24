@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doces do 3° Ano 🎓🍬</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ffb6f9, #ffe29f);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background-color: #ff69b4;
+    color: white;
+    padding: 20px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.container {
+    padding: 20px;
+}
+
+table {
+    margin: auto;
+    border-collapse: collapse;
+    background: white;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #ff69b4;
+    color: white;
+}
+
+button {
+    padding: 6px 12px;
+    border: none;
+    background-color: #ff69b4;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #ff1493;
+}
+
+.total {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+footer {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #ff69b4;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+🍬 Doces do 3° Ano 🎓
+</header>
+
+<div class="container">
+
+<h2>🍭 Tabela de Preços</h2>
+
+<table>
+<tr>
+<th>Doce</th>
+<th>Preço</th>
+<th>Adicionar</th>
+</tr>
+
+<tr>
+<td>Paçoca</td>
+<td>R$ 0,50</td>
+<td><button onclick="addItem(0.5)">+</button></td>
+</tr>
+
+<tr>
+<td>Pirulito</td>
+<td>R$ 1,00</td>
+<td><button onclick="addItem(1)">+</button></td>
+</tr>
+
+<tr>
+<td>Chiclete</td>
+<td>R$ 0,50</td>
+<td><button onclick="addItem(0.5)">+</button></td>
+</tr>
+
+<tr>
+<td>Mini Donuts</td>
+<td>R$ 2,00 (3 por R$5)</td>
+<td><button onclick="addDonuts()">+</button></td>
+</tr>
+
+<tr>
+<td>Brigadeiro</td>
+<td>R$ 2,00</td>
+<td><button onclick="addItem(2)">+</button></td>
+</tr>
+
+</table>
+
+<div class="total">
+Total: R$ <span id="total">0.00</span>
+</div>
+
+<br>
+<button onclick="finalizarCompra()">Finalizar Compra 🎉</button>
+
+</div>
+
+<footer>
+✨ Ajude nossa turma a realizar a formatura dos sonhos! ✨
+</footer>
+
+<script>
+let total = 0;
+let donuts = 0;
+
+function addItem(valor) {
+    total += valor;
+    atualizarTotal();
+}
+
+function addDonuts() {
+    donuts++;
+    if (donuts % 3 === 0) {
+        total += 5;
+    } else {
+        total += 2;
+    }
+    atualizarTotal();
+}
+
+function atualizarTotal() {
+    document.getElementById("total").innerText = total.toFixed(2);
+}
+
+function finalizarCompra() {
+    alert("Obrigado por apoiar o 3° ano! 🎓🍬 Total: R$ " + total.toFixed(2));
+    total = 0;
+    donuts = 0;
+    atualizarTotal();
+}
+</script>
+
+</body>
+</html>
