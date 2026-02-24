@@ -3,75 +3,102 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Doces do 3° Ano 🎓🍬</title>
+<title>Doces - Terceiro Ano Informática 🎓</title>
 
 <style>
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ffb6f9, #ffe29f);
     margin: 0;
-    padding: 0;
-    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff9ed8, #ffe6a7);
+    overflow-x: hidden;
 }
 
 header {
-    background-color: #ff69b4;
+    background: linear-gradient(90deg, #ff69b4, #ff1493);
     color: white;
-    padding: 20px;
-    font-size: 28px;
-    font-weight: bold;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .container {
-    padding: 20px;
+    padding: 30px;
+    text-align: center;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    max-width: 800px;
+    margin: auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 table {
-    margin: auto;
+    width: 100%;
     border-collapse: collapse;
-    background: white;
-    width: 90%;
-    max-width: 600px;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-}
-
-th, td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
 }
 
 th {
-    background-color: #ff69b4;
+    background: #ff69b4;
     color: white;
+    padding: 12px;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
 }
 
 button {
     padding: 6px 12px;
+    margin: 0 3px;
+    background: #ff69b4;
     border: none;
-    background-color: #ff69b4;
+    border-radius: 8px;
     color: white;
-    border-radius: 10px;
     cursor: pointer;
     font-weight: bold;
 }
 
 button:hover {
-    background-color: #ff1493;
+    background: #ff1493;
 }
 
 .total {
     margin-top: 20px;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
 }
 
-footer {
+.pix {
     margin-top: 30px;
-    padding: 15px;
-    background-color: #ff69b4;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 15px;
+}
+
+footer {
+    margin-top: 40px;
+    background: #ff69b4;
     color: white;
+    padding: 15px;
+}
+
+/* Doces caindo */
+.candy {
+    position: fixed;
+    top: -50px;
+    font-size: 24px;
+    animation: fall linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
 }
 </style>
 </head>
@@ -79,10 +106,12 @@ footer {
 <body>
 
 <header>
-🍬 Doces do 3° Ano 🎓
+<h1>🍬 Doces do Terceiro Ano 🎓</h1>
+<p><strong>Turma: Terceiro Ano, Informática</strong></p>
 </header>
 
 <div class="container">
+<div class="card">
 
 <h2>🍭 Tabela de Preços</h2>
 
@@ -90,37 +119,57 @@ footer {
 <tr>
 <th>Doce</th>
 <th>Preço</th>
-<th>Adicionar</th>
+<th>Quantidade</th>
 </tr>
 
 <tr>
 <td>Paçoca</td>
 <td>R$ 0,50</td>
-<td><button onclick="addItem(0.5)">+</button></td>
+<td>
+<button onclick="alterar('pacoca', -1)">-</button>
+<span id="pacoca">0</span>
+<button onclick="alterar('pacoca', 1)">+</button>
+</td>
 </tr>
 
 <tr>
 <td>Pirulito</td>
 <td>R$ 1,00</td>
-<td><button onclick="addItem(1)">+</button></td>
+<td>
+<button onclick="alterar('pirulito', -1)">-</button>
+<span id="pirulito">0</span>
+<button onclick="alterar('pirulito', 1)">+</button>
+</td>
 </tr>
 
 <tr>
 <td>Chiclete</td>
 <td>R$ 0,50</td>
-<td><button onclick="addItem(0.5)">+</button></td>
+<td>
+<button onclick="alterar('chiclete', -1)">-</button>
+<span id="chiclete">0</span>
+<button onclick="alterar('chiclete', 1)">+</button>
+</td>
 </tr>
 
 <tr>
 <td>Mini Donuts</td>
 <td>R$ 2,00 (3 por R$5)</td>
-<td><button onclick="addDonuts()">+</button></td>
+<td>
+<button onclick="alterar('donut', -1)">-</button>
+<span id="donut">0</span>
+<button onclick="alterar('donut', 1)">+</button>
+</td>
 </tr>
 
 <tr>
 <td>Brigadeiro</td>
 <td>R$ 2,00</td>
-<td><button onclick="addItem(2)">+</button></td>
+<td>
+<button onclick="alterar('brigadeiro', -1)">-</button>
+<span id="brigadeiro">0</span>
+<button onclick="alterar('brigadeiro', 1)">+</button>
+</td>
 </tr>
 
 </table>
@@ -129,45 +178,72 @@ footer {
 Total: R$ <span id="total">0.00</span>
 </div>
 
-<br>
-<button onclick="finalizarCompra()">Finalizar Compra 🎉</button>
+<div class="pix">
+<h3>💰 Pagamento via Pix</h3>
+<img src="pix.png" width="200"><br><br>
+<p><strong>Chave Pix:</strong> 38998140575</p>
+<p><strong>Nome:</strong> Kênia Gonçalves Coutinho</p>
+</div>
 
+</div>
 </div>
 
 <footer>
-✨ Ajude nossa turma a realizar a formatura dos sonhos! ✨
+✨ Ajude o Terceiro Ano, Informática a realizar a formatura dos sonhos! ✨
 </footer>
 
 <script>
-let total = 0;
-let donuts = 0;
+let precos = {
+    pacoca: 0.5,
+    pirulito: 1,
+    chiclete: 0.5,
+    donut: 2,
+    brigadeiro: 2
+};
 
-function addItem(valor) {
-    total += valor;
-    atualizarTotal();
-}
+let quantidades = {
+    pacoca: 0,
+    pirulito: 0,
+    chiclete: 0,
+    donut: 0,
+    brigadeiro: 0
+};
 
-function addDonuts() {
-    donuts++;
-    if (donuts % 3 === 0) {
-        total += 5;
-    } else {
-        total += 2;
+function alterar(item, valor) {
+    if (quantidades[item] + valor >= 0) {
+        quantidades[item] += valor;
+        document.getElementById(item).innerText = quantidades[item];
+        atualizarTotal();
     }
-    atualizarTotal();
 }
 
 function atualizarTotal() {
+    let total = 0;
+
+    for (let item in quantidades) {
+        if (item === "donut") {
+            let qtd = quantidades[item];
+            total += Math.floor(qtd / 3) * 5 + (qtd % 3) * 2;
+        } else {
+            total += quantidades[item] * precos[item];
+        }
+    }
+
     document.getElementById("total").innerText = total.toFixed(2);
 }
 
-function finalizarCompra() {
-    alert("Obrigado por apoiar o 3° ano! 🎓🍬 Total: R$ " + total.toFixed(2));
-    total = 0;
-    donuts = 0;
-    atualizarTotal();
+/* Doces caindo */
+const doces = ["🍬","🍭","🍩","🧁"];
+for(let i = 0; i < 25; i++){
+    let doce = document.createElement("div");
+    doce.classList.add("candy");
+    doce.innerHTML = doces[Math.floor(Math.random()*doces.length)];
+    doce.style.left = Math.random()*100 + "vw";
+    doce.style.animationDuration = (6 + Math.random()*6) + "s";
+    doce.style.fontSize = (20 + Math.random()*25) + "px";
+    document.body.appendChild(doce);
 }
 </script>
 
 </body>
-</html>
+    </html>
