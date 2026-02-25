@@ -3,128 +3,140 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Doces - Terceiro Ano Informática 🎓</title>
+<title>Doces do Terceiro Ano</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #ff9ed8, #ffe6a7);
-    overflow-x: hidden;
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#ff9ecf,#ffd6ec);
+    overflow-x:hidden;
 }
 
-/* HEADER */
-header {
-    background: linear-gradient(90deg, #ff69b4, #ff1493);
-    color: white;
-    padding: 25px;
-    text-align: center;
+header{
+    text-align:center;
+    padding:60px 20px;
+    color:white;
 }
 
-/* CARD */
-.container { padding: 30px; text-align: center; }
-
-.card {
-    background: white;
-    padding: 25px;
-    border-radius: 20px;
-    max-width: 800px;
-    margin: auto;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+h1{
+    font-size:40px;
+    margin:0;
 }
 
-/* TABLE */
-table { width: 100%; border-collapse: collapse; }
-th { background: #ff69b4; color: white; padding: 12px; }
-td { padding: 12px; border-bottom: 1px solid #eee; }
-
-.controle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+h2{
+    margin-top:10px;
+    font-weight:normal;
 }
 
-button {
-    padding: 6px 14px;
-    background: #ff69b4;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-    transition: 0.2s;
+.container{
+    background:white;
+    margin:30px auto;
+    padding:20px;
+    border-radius:20px;
+    width:90%;
+    max-width:800px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
-button:hover { background: #ff1493; transform: scale(1.1); }
+table{
+    width:100%;
+    border-collapse:collapse;
+    text-align:center;
+}
 
-.total { margin-top: 20px; font-size: 22px; font-weight: bold; }
+th{
+    background:#ff4da6;
+    color:white;
+    padding:10px;
+}
 
-.pix {
-    margin-top: 30px;
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 15px;
+td{
+    padding:12px;
+    border-bottom:1px solid #eee;
+}
+
+button{
+    background:#ff4da6;
+    border:none;
+    color:white;
+    padding:8px 12px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    opacity:0.8;
+}
+
+/* Botões lado a lado */
+.qtd-controle{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+}
+
+/* Ícone Carrinho */
+.icone-carrinho{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:#ff4da6;
+    color:white;
+    font-size:22px;
+    padding:12px 15px;
+    border-radius:50%;
+    cursor:pointer;
+    box-shadow:0 4px 15px rgba(0,0,0,0.3);
+    z-index:1000;
+}
+
+/* Painel Carrinho */
+.painel-carrinho{
+    position:fixed;
+    top:0;
+    right:-350px;
+    width:320px;
+    height:100%;
+    background:white;
+    box-shadow:-5px 0 15px rgba(0,0,0,0.2);
+    padding:20px;
+    transition:0.4s;
+    z-index:999;
+    overflow-y:auto;
+}
+
+.painel-carrinho.ativo{
+    right:0;
 }
 
 /* WhatsApp */
-.whatsapp {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #25D366;
-    color: white;
-    padding: 15px;
-    border-radius: 50%;
-    font-size: 24px;
-    text-decoration: none;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-/* Carrinho */
-.carrinho {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: white;
-    padding: 15px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    font-size: 14px;
-    width: 200px;
-}
-
-/* Confete */
-.confete {
-    position: fixed;
-    top: -10px;
-    width: 10px;
-    height: 10px;
-    background: red;
-    animation: cair 3s linear forwards;
-}
-
-@keyframes cair {
-    to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+.whatsapp{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    color:white;
+    font-size:25px;
+    padding:15px;
+    border-radius:50%;
+    cursor:pointer;
 }
 
 /* Doces caindo */
-.candy {
-    position: fixed;
-    top: -50px;
-    font-size: 24px;
-    animation: fall linear infinite;
-    opacity: 0.7;
+.doce{
+    position:fixed;
+    top:-50px;
+    font-size:25px;
+    animation:cair 10s linear infinite;
 }
-@keyframes fall { to { transform: translateY(110vh); } }
 
-footer {
-    margin-top: 40px;
-    background: #ff69b4;
-    color: white;
-    padding: 15px;
-    text-align: center;
+@keyframes cair{
+    to{
+        transform:translateY(110vh);
+    }
 }
 </style>
 </head>
@@ -132,146 +144,168 @@ footer {
 <body>
 
 <header>
-<h1>🍬 Doces do Terceiro Ano 🎓</h1>
-<p><strong>Turma: Terceiro Ano, Informática</strong></p>
+<h1>🍬 Doces do Terceiro Ano</h1>
+<h2>Turma: Terceiro Ano, Informática 🎓</h2>
 </header>
 
-<div class="carrinho">
-<strong>🛒 Carrinho</strong>
-<div id="lista"></div>
-<hr>
-Total: R$ <span id="total">0.00</span><br><br>
-<button onclick="finalizar()">Finalizar 🎉</button>
+<div class="icone-carrinho" onclick="abrirCarrinho()">🛒</div>
+
+<div class="painel-carrinho" id="painelCarrinho">
+<h2>🛍️ Seu Pedido</h2>
+<div id="listaCarrinho"></div>
+<h3>Total: R$ <span id="total">0.00</span></h3>
+<button onclick="finalizarCompra()">Finalizar 🎉</button>
+<br><br>
+<button onclick="fecharCarrinho()">Fechar ❌</button>
 </div>
 
 <div class="container">
-<div class="card">
-
 <h2>🍭 Tabela de Preços</h2>
 
 <table>
-<tr><th>Doce</th><th>Preço</th><th>Qtd</th></tr>
+<tr>
+<th>Doce</th>
+<th>Preço</th>
+<th>Qtd</th>
+</tr>
 
 <tr>
-<td>Paçoca</td><td>R$ 0,50</td>
-<td><div class="controle">
+<td>Paçoca</td>
+<td>R$ 0,50</td>
+<td>
+<div class="qtd-controle">
 <button onclick="alterar('Paçoca',0.5,-1)">-</button>
 <span id="Paçoca">0</span>
 <button onclick="alterar('Paçoca',0.5,1)">+</button>
-</div></td>
+</div>
+</td>
 </tr>
 
 <tr>
-<td>Pirulito</td><td>R$ 1,00</td>
-<td><div class="controle">
+<td>Pirulito</td>
+<td>R$ 1,00</td>
+<td>
+<div class="qtd-controle">
 <button onclick="alterar('Pirulito',1,-1)">-</button>
 <span id="Pirulito">0</span>
 <button onclick="alterar('Pirulito',1,1)">+</button>
-</div></td>
+</div>
+</td>
 </tr>
 
 <tr>
-<td>Chiclete</td><td>R$ 0,50</td>
-<td><div class="controle">
+<td>Chiclete</td>
+<td>R$ 0,50</td>
+<td>
+<div class="qtd-controle">
 <button onclick="alterar('Chiclete',0.5,-1)">-</button>
 <span id="Chiclete">0</span>
 <button onclick="alterar('Chiclete',0.5,1)">+</button>
-</div></td>
+</div>
+</td>
 </tr>
 
 <tr>
-<td>Mini Donuts</td><td>R$ 2,00 (3 por R$5)</td>
-<td><div class="controle">
-<button onclick="alterar('Donuts',2,-1)">-</button>
-<span id="Donuts">0</span>
-<button onclick="alterar('Donuts',2,1)">+</button>
-</div></td>
+<td>Mini Donuts</td>
+<td>R$ 2,00 (3 por R$5)</td>
+<td>
+<div class="qtd-controle">
+<button onclick="alterar('Mini Donuts',2,-1)">-</button>
+<span id="Mini Donuts">0</span>
+<button onclick="alterar('Mini Donuts',2,1)">+</button>
+</div>
+</td>
 </tr>
 
 <tr>
-<td>Brigadeiro</td><td>R$ 2,00</td>
-<td><div class="controle">
+<td>Brigadeiro</td>
+<td>R$ 2,00</td>
+<td>
+<div class="qtd-controle">
 <button onclick="alterar('Brigadeiro',2,-1)">-</button>
 <span id="Brigadeiro">0</span>
 <button onclick="alterar('Brigadeiro',2,1)">+</button>
-</div></td>
+</div>
+</td>
 </tr>
 
 </table>
-
-<div class="pix">
-<h3>💰 Pagamento via Pix</h3>
-<img src="pix.png" width="200"><br><br>
-<p><strong>Chave Pix:</strong> 38998140575</p>
-<p><strong>Nome:</strong> Kênia Gonçalves Coutinho</p>
 </div>
 
-</div>
+<div class="container">
+<h2>💰 Pagamento via Pix</h2>
+<p>Escaneie o QR Code abaixo:</p>
+<img src="pix.png" width="200">
+<p>Ou envie comprovante no WhatsApp: (38) 9 8833-9830</p>
 </div>
 
-<a class="whatsapp" href="https://wa.me/5538988339830" target="_blank">📱</a>
-
-<footer>
-✨ Ajude o Terceiro Ano, Informática a realizar a formatura dos sonhos! ✨
-</footer>
+<div class="whatsapp" onclick="irWhats()">📱</div>
 
 <script>
-let carrinho = {};
+let total=0;
+let carrinho={};
 
-let somMais = new Audio("https://www.soundjay.com/buttons/sounds/button-3.mp3");
-let somMenos = new Audio("https://www.soundjay.com/buttons/sounds/button-10.mp3");
-let somFinal = new Audio("https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3");
+function alterar(nome,preco,valor){
+    let qtd=parseInt(document.getElementById(nome).innerText);
+    qtd+=valor;
+    if(qtd<0)qtd=0;
+    document.getElementById(nome).innerText=qtd;
 
-function alterar(item, preco, valor) {
-    if (!carrinho[item]) carrinho[item] = {qtd:0, preco:preco};
-    if (carrinho[item].qtd + valor >= 0) {
-        carrinho[item].qtd += valor;
-        document.getElementById(item).innerText = carrinho[item].qtd;
-        valor > 0 ? somMais.play() : somMenos.play();
-        atualizar();
-    }
+    carrinho[nome]={qtd:qtd,preco:preco};
+    atualizarTotal();
+    somClique();
 }
 
-function atualizar() {
-    let total = 0;
-    let lista = "";
-    for (let item in carrinho) {
-        let qtd = carrinho[item].qtd;
-        if (qtd > 0) {
-            if (item === "Donuts") {
-                total += Math.floor(qtd/3)*5 + (qtd%3)*2;
-            } else {
-                total += qtd * carrinho[item].preco;
-            }
-            lista += item + " x" + qtd + "<br>";
+function atualizarTotal(){
+    total=0;
+    let lista="";
+    for(let item in carrinho){
+        if(carrinho[item].qtd>0){
+            total+=carrinho[item].qtd*carrinho[item].preco;
+            lista+=`${item} x${carrinho[item].qtd}<br>`;
         }
     }
-    document.getElementById("lista").innerHTML = lista;
-    document.getElementById("total").innerText = total.toFixed(2);
+    document.getElementById("total").innerText=total.toFixed(2);
+    document.getElementById("listaCarrinho").innerHTML=lista;
 }
 
-function finalizar() {
-    somFinal.play();
-    for(let i=0;i<80;i++){
-        let c = document.createElement("div");
-        c.classList.add("confete");
-        c.style.left = Math.random()*100+"vw";
-        c.style.background = ["red","blue","yellow","green","pink"][Math.floor(Math.random()*5)];
-        document.body.appendChild(c);
-        setTimeout(()=>c.remove(),3000);
+function abrirCarrinho(){
+    document.getElementById("painelCarrinho").classList.add("ativo");
+}
+
+function fecharCarrinho(){
+    document.getElementById("painelCarrinho").classList.remove("ativo");
+}
+
+function finalizarCompra(){
+    if(total<=0){
+        alert("Adicione produtos!");
+        return;
     }
-    alert("Compra finalizada! Obrigado por apoiar 🎓🍬");
+
+    let mensagem=`Olá! Quero pedir:\nTotal: R$ ${total.toFixed(2)}\nVou pagar via Pix.`;
+    let numero="5538988339830";
+    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`);
+}
+
+function irWhats(){
+    window.open("https://wa.me/5538988339830");
+}
+
+function somClique(){
+    let audio=new Audio("https://www.soundjay.com/buttons/sounds/button-16.mp3");
+    audio.play();
 }
 
 /* Doces caindo */
-const doces=["🍬","🍭","🍩","🧁"];
-for(let i=0;i<25;i++){
- let d=document.createElement("div");
- d.classList.add("candy");
- d.innerHTML=doces[Math.floor(Math.random()*doces.length)];
- d.style.left=Math.random()*100+"vw";
- d.style.animationDuration=(6+Math.random()*6)+"s";
- document.body.appendChild(d);
+let doces=["🍩","🍭","🍬","🧁"];
+for(let i=0;i<15;i++){
+    let span=document.createElement("span");
+    span.classList.add("doce");
+    span.innerText=doces[Math.floor(Math.random()*doces.length)];
+    span.style.left=Math.random()*100+"vw";
+    span.style.animationDuration=(5+Math.random()*5)+"s";
+    document.body.appendChild(span);
 }
 </script>
 
