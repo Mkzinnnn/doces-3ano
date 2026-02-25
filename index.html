@@ -70,7 +70,6 @@ button:hover{
     opacity:0.8;
 }
 
-/* Botões lado a lado */
 .qtd-controle{
     display:flex;
     justify-content:center;
@@ -78,7 +77,6 @@ button:hover{
     gap:10px;
 }
 
-/* Ícone Carrinho */
 .icone-carrinho{
     position:fixed;
     top:20px;
@@ -93,7 +91,6 @@ button:hover{
     z-index:1000;
 }
 
-/* Painel Carrinho */
 .painel-carrinho{
     position:fixed;
     top:0;
@@ -112,7 +109,6 @@ button:hover{
     right:0;
 }
 
-/* WhatsApp */
 .whatsapp{
     position:fixed;
     bottom:20px;
@@ -125,7 +121,6 @@ button:hover{
     cursor:pointer;
 }
 
-/* Doces caindo */
 .doce{
     position:fixed;
     top:-50px;
@@ -236,7 +231,7 @@ button:hover{
 <h2>💰 Pagamento via Pix</h2>
 <p>Escaneie o QR Code abaixo:</p>
 <img src="pix.png" width="200">
-<p>Ou envie comprovante no WhatsApp:  (38) 9814-0575</p>
+<p>Ou envie comprovante no WhatsApp: +55 38 9814-0575</p>
 </div>
 
 <div class="whatsapp" onclick="irWhats()">📱</div>
@@ -284,12 +279,12 @@ function finalizarCompra(){
     }
 
     let mensagem=`Olá! Quero pedir:\nTotal: R$ ${total.toFixed(2)}\nVou pagar via Pix.`;
-    let numero="5538988339830";
+    let numero="553898140575";
     window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`);
 }
 
 function irWhats(){
-    window.open("https://wa.me/5538988339830");
+    window.open("https://wa.me/553898140575");
 }
 
 function somClique(){
@@ -297,7 +292,6 @@ function somClique(){
     audio.play();
 }
 
-/* Doces caindo */
 let doces=["🍩","🍭","🍬","🧁"];
 for(let i=0;i<15;i++){
     let span=document.createElement("span");
