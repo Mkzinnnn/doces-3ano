@@ -3,135 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Doces do Terceiro Ano</title>
+<title>Venda de Doces - 3º Ano Informática</title>
 
 <style>
 body{
     margin:0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg,#ff9ecf,#ffd6ec);
+    font-family:Arial, sans-serif;
+    background:#fff8f2;
     overflow-x:hidden;
 }
 
 header{
-    text-align:center;
-    padding:60px 20px;
+    background:#ff4d6d;
     color:white;
+    padding:15px;
+    text-align:center;
+    position:relative;
 }
 
-h1{
-    font-size:40px;
-    margin:0;
-}
-
-h2{
-    margin-top:10px;
-    font-weight:normal;
+.carrinho-icon{
+    position:absolute;
+    right:20px;
+    top:15px;
+    font-size:24px;
+    cursor:pointer;
 }
 
 .container{
-    background:white;
-    margin:30px auto;
     padding:20px;
-    border-radius:20px;
-    width:90%;
-    max-width:800px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-    text-align:center;
+.produto{
+    background:white;
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:10px;
+    box-shadow:0 4px 8px rgba(0,0,0,0.1);
 }
 
-th{
-    background:#ff4da6;
-    color:white;
-    padding:10px;
-}
-
-td{
-    padding:12px;
-    border-bottom:1px solid #eee;
+.controles{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-top:10px;
 }
 
 button{
-    background:#ff4da6;
+    padding:5px 12px;
     border:none;
-    color:white;
-    padding:8px 12px;
-    border-radius:10px;
+    border-radius:5px;
     cursor:pointer;
     font-size:16px;
 }
 
-button:hover{
-    opacity:0.8;
-}
+.mais{background:#28a745;color:white;}
+.menos{background:#dc3545;color:white;}
 
-.qtd-controle{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-}
-
-.icone-carrinho{
-    position:fixed;
-    top:20px;
-    right:20px;
-    background:#ff4da6;
-    color:white;
-    font-size:22px;
-    padding:12px 15px;
-    border-radius:50%;
-    cursor:pointer;
-    box-shadow:0 4px 15px rgba(0,0,0,0.3);
-    z-index:1000;
-}
-
-.painel-carrinho{
-    position:fixed;
-    top:0;
-    right:-350px;
-    width:320px;
-    height:100%;
-    background:white;
-    box-shadow:-5px 0 15px rgba(0,0,0,0.2);
-    padding:20px;
-    transition:0.4s;
-    z-index:999;
-    overflow-y:auto;
-}
-
-.painel-carrinho.ativo{
-    right:0;
-}
-
-.whatsapp{
-    position:fixed;
-    bottom:20px;
-    right:20px;
+.finalizar{
     background:#25D366;
     color:white;
-    font-size:25px;
-    padding:15px;
-    border-radius:50%;
-    cursor:pointer;
+    width:100%;
+    padding:12px;
+    font-size:18px;
+    margin-top:15px;
 }
 
-.doce{
+#carrinho{
+    display:none;
+    background:white;
     position:fixed;
-    top:-50px;
-    font-size:25px;
-    animation:cair 10s linear infinite;
-}
-
-@keyframes cair{
-    to{
-        transform:translateY(110vh);
-    }
+    top:70px;
+    right:20px;
+    width:250px;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
 }
 </style>
 </head>
@@ -139,168 +85,89 @@ button:hover{
 <body>
 
 <header>
-<h1>🍬 Doces do Terceiro Ano</h1>
-<h2>Turma: Terceiro Ano, Informática 🎓</h2>
+<h2>🍬 Terceiro Ano - Informática 🍬</h2>
+<div class="carrinho-icon" onclick="abrirCarrinho()">🛒</div>
 </header>
 
-<div class="icone-carrinho" onclick="abrirCarrinho()">🛒</div>
-
-<div class="painel-carrinho" id="painelCarrinho">
-<h2>🛍️ Seu Pedido</h2>
-<div id="listaCarrinho"></div>
-<h3>Total: R$ <span id="total">0.00</span></h3>
-<button onclick="finalizarCompra()">Finalizar 🎉</button>
-<br><br>
-<button onclick="fecharCarrinho()">Fechar ❌</button>
-</div>
-
 <div class="container">
-<h2>🍭 Tabela de Preços</h2>
 
-<table>
-<tr>
-<th>Doce</th>
-<th>Preço</th>
-<th>Qtd</th>
-</tr>
-
-<tr>
-<td>Paçoca</td>
-<td>R$ 0,50</td>
-<td>
-<div class="qtd-controle">
-<button onclick="alterar('Paçoca',0.5,-1)">-</button>
-<span id="Paçoca">0</span>
-<button onclick="alterar('Paçoca',0.5,1)">+</button>
+<div class="produto">
+<h3>Brigadeiro - R$ 2,00</h3>
+<div class="controles">
+<button class="menos" onclick="alterar('brigadeiro',-1)">-</button>
+<span id="brigadeiro">0</span>
+<button class="mais" onclick="alterar('brigadeiro',1)">+</button>
 </div>
-</td>
-</tr>
-
-<tr>
-<td>Pirulito</td>
-<td>R$ 1,00</td>
-<td>
-<div class="qtd-controle">
-<button onclick="alterar('Pirulito',1,-1)">-</button>
-<span id="Pirulito">0</span>
-<button onclick="alterar('Pirulito',1,1)">+</button>
-</div>
-</td>
-</tr>
-
-<tr>
-<td>Chiclete</td>
-<td>R$ 0,50</td>
-<td>
-<div class="qtd-controle">
-<button onclick="alterar('Chiclete',0.5,-1)">-</button>
-<span id="Chiclete">0</span>
-<button onclick="alterar('Chiclete',0.5,1)">+</button>
-</div>
-</td>
-</tr>
-
-<tr>
-<td>Mini Donuts</td>
-<td>R$ 2,00 (3 por R$5)</td>
-<td>
-<div class="qtd-controle">
-<button onclick="alterar('Mini Donuts',2,-1)">-</button>
-<span id="Mini Donuts">0</span>
-<button onclick="alterar('Mini Donuts',2,1)">+</button>
-</div>
-</td>
-</tr>
-
-<tr>
-<td>Brigadeiro</td>
-<td>R$ 2,00</td>
-<td>
-<div class="qtd-controle">
-<button onclick="alterar('Brigadeiro',2,-1)">-</button>
-<span id="Brigadeiro">0</span>
-<button onclick="alterar('Brigadeiro',2,1)">+</button>
-</div>
-</td>
-</tr>
-
-</table>
 </div>
 
-<div class="container">
-<h2>💰 Pagamento via Pix</h2>
-<p>Escaneie o QR Code abaixo:</p>
-<img src="pix.png" width="200">
-<p>Ou envie comprovante no WhatsApp: +55 38 9814-0575</p>
+<div class="produto">
+<h3>Salgadinho - R$ 3,00</h3>
+<div class="controles">
+<button class="menos" onclick="alterar('salgado',-1)">-</button>
+<span id="salgado">0</span>
+<button class="mais" onclick="alterar('salgado',1)">+</button>
+</div>
 </div>
 
-<div class="whatsapp" onclick="irWhats()">📱</div>
+</div>
+
+<div id="carrinho">
+<h3>Seu Pedido</h3>
+<p id="resumo"></p>
+<p><strong>Total: R$ <span id="total">0.00</span></strong></p>
+<button class="finalizar" onclick="finalizar()">Finalizar Compra</button>
+</div>
 
 <script>
-let total=0;
-let carrinho={};
 
-function alterar(nome,preco,valor){
-    let qtd=parseInt(document.getElementById(nome).innerText);
-    qtd+=valor;
-    if(qtd<0)qtd=0;
-    document.getElementById(nome).innerText=qtd;
-
-    carrinho[nome]={qtd:qtd,preco:preco};
-    atualizarTotal();
-    somClique();
+let preco={
+brigadeiro:2,
+salgado:3
 }
 
-function atualizarTotal(){
-    total=0;
-    let lista="";
-    for(let item in carrinho){
-        if(carrinho[item].qtd>0){
-            total+=carrinho[item].qtd*carrinho[item].preco;
-            lista+=`${item} x${carrinho[item].qtd}<br>`;
-        }
-    }
-    document.getElementById("total").innerText=total.toFixed(2);
-    document.getElementById("listaCarrinho").innerHTML=lista;
+let qtd={
+brigadeiro:0,
+salgado:0
+}
+
+function alterar(produto,valor){
+qtd[produto]+=valor;
+if(qtd[produto]<0) qtd[produto]=0;
+document.getElementById(produto).innerText=qtd[produto];
+calcular();
+}
+
+function calcular(){
+let total=(qtd.brigadeiro*preco.brigadeiro)+(qtd.salgado*preco.salgado);
+document.getElementById("total").innerText=total.toFixed(2);
+
+let texto="";
+if(qtd.brigadeiro>0) texto+=`Brigadeiro: ${qtd.brigadeiro}<br>`;
+if(qtd.salgado>0) texto+=`Salgadinho: ${qtd.salgado}<br>`;
+
+document.getElementById("resumo").innerHTML=texto || "Carrinho vazio";
 }
 
 function abrirCarrinho(){
-    document.getElementById("painelCarrinho").classList.add("ativo");
+let c=document.getElementById("carrinho");
+c.style.display=(c.style.display=="block")?"none":"block";
 }
 
-function fecharCarrinho(){
-    document.getElementById("painelCarrinho").classList.remove("ativo");
+function finalizar(){
+let total=(qtd.brigadeiro*preco.brigadeiro)+(qtd.salgado*preco.salgado);
+
+if(total<=0){
+alert("Adicione algum produto!");
+return;
 }
 
-function finalizarCompra(){
-    if(total<=0){
-        alert("Adicione produtos!");
-        return;
-    }
+let numero="553898140575";
 
-    let mensagem=`Olá! Quero pedir:\nTotal: R$ ${total.toFixed(2)}\nVou pagar via Pix.`;
-    let numero="553898140575";
-    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`);
+let mensagem=`Olá! Quero fazer um pedido.%0A%0ABrigadeiro: ${qtd.brigadeiro}%0ASalgadinho: ${qtd.salgado}%0A%0ATotal: R$ ${total.toFixed(2)}`;
+
+window.open(`https://wa.me/${numero}?text=${mensagem}`);
 }
 
-function irWhats(){
-    window.open("https://wa.me/553898140575");
-}
-
-function somClique(){
-    let audio=new Audio("https://www.soundjay.com/buttons/sounds/button-16.mp3");
-    audio.play();
-}
-
-let doces=["🍩","🍭","🍬","🧁"];
-for(let i=0;i<15;i++){
-    let span=document.createElement("span");
-    span.classList.add("doce");
-    span.innerText=doces[Math.floor(Math.random()*doces.length)];
-    span.style.left=Math.random()*100+"vw";
-    span.style.animationDuration=(5+Math.random()*5)+"s";
-    document.body.appendChild(span);
-}
 </script>
 
 </body>
